@@ -1,0 +1,235 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+* {
+  box-sizing: border-box;
+}
+
+body {
+  scrollbar-gutter: auto;
+  -webkit-tap-highlight-color: transparent; /* For iOS */
+  user-select: none;
+}
+
+.logo{
+  position: relative;
+  padding: 2px 13px 2px 10px;
+  margin-left: 10px;
+  color: black;
+  z-index: 999;
+}
+
+.logo::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: skewX(-33deg);
+  background-color: #19fa9a;
+  border-radius: 0.5rem; /* 6px rounded corners */
+  z-index: -1;
+}
+
+.BG_IMAGE {
+  background-image: url("../assets/landingPageBgLight.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+:is(.dark .dark\:BG_IMAGE_DARK) {
+  background-image: url("../assets/landingPageBg.png");
+}
+
+html {
+  /* For Firefox */
+  scrollbar-color: rgb(193, 190, 190) rgb(255, 255, 255);
+  scrollbar-width: thin;
+  -webkit-tap-highlight-color: transparent; /* For iOS */
+  user-select: none;
+}
+
+.SCROLL_BAR::-webkit-scrollbar {
+  width: 6px;
+}
+
+.NO_SCROLLBAR {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.NO_SCROLLBAR::-webkit-scrollbar {
+  width: 12px;
+}
+
+.NO_SCROLLBAR::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.HORIZONTAL_SCROLL_BAR::-webkit-scrollbar {
+  height: 6px;
+}
+
+.SCROLL_BAR::-webkit-scrollbar-track,
+.HORIZONTAL_SCROLL_BAR:-webkit-scrollbar-track {
+  background-color: rgb(255, 255, 255);
+  border-radius: 100px;
+}
+
+.SCROLL_BAR::-webkit-scrollbar-thumb,
+.HORIZONTAL_SCROLL_BAR::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: rgb(193, 190, 190);
+  border-radius: 100px;
+}
+
+
+.NO-SCROLLBAR::-webkit-scrollbar {
+  width: 0;
+}
+
+.NO-SCROLLBAR::-webkit-scrollbar-thumb {
+  background-color: #888;
+}
+
+.NO-SCROLLBAR::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+
+.loader {
+  width: 1.5rem;
+  height: 1.25rem;
+  position: relative;
+  margin: auto;
+  transform: rotate(45deg);
+}
+
+.orbe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: orbit ease-in-out 1.5s infinite;
+}
+
+.orbe::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0.3rem; /* Set to the specified size */
+  height: 0.3rem; /* Set to the specified size */
+  background-color: #868686;
+  border-radius: 50%;
+}
+
+.orbe:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.orbe:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.orbe:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.orbe:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.orbe:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+@keyframes orbit {
+  0% {
+  }
+
+  80% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.SHADOW_DIV {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 2.5rem;
+  height: 2rem;
+}
+
+.toggle-input {
+  display: none;
+}
+
+.toggle-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2.5rem;
+  height: 1.4rem;
+  border-radius: 17px;
+  background-color: #ccc;
+  cursor: pointer;
+  transition: background-color 0.4s ease;
+}
+
+.toggle-label:before {
+  content: "";
+  position: absolute;
+  top: 0.15rem;
+  left: 0.1rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease;
+}
+
+.toggle-input:checked + .toggle-label {
+  background-color: #19fa9a;
+}
+
+.toggle-input:checked + .toggle-label:before {
+  transform: translateX(1.2rem);
+}
+
+.TAGS:nth-child(3n + 1) {
+  border-color: #8c2a3c;
+  background-color: #30121f;
+}
+
+.TAGS:nth-child(3n + 2) {
+  border-color: #127c4c;
+  background-color: #123221;
+}
+
+.TAGS:nth-child(3n + 3) {
+  border-color: #5c4ca5;
+  background-color: #231f32;
+}
+
+:is(.dark .dark\:TAGS:nth-child(3n + 1)){
+  color: #bb2a46;
+}
+:is(.dark .dark\:TAGS:nth-child(3n + 2)){
+  color : #15c076
+}
+:is(.dark .dark\:TAGS:nth-child(3n + 3)){
+  color: #765ddc;
+}

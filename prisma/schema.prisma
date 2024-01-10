@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String         @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  email         String         @unique
+  password      String
+  isVerified    Boolean?       @default(false)
+  sendReminders Boolean?       @default(false)
+  profilePic    String?        @default("https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg")
+  createdAt     DateTime?      @default(now())
+  updatedAt     DateTime       @updatedAt
+  tasks         Task[]         @relation("createdByUser")
+  codes         Code[]         @relation("createdByUser")
+  watchlater    WatchLater[]   @relation("createdByUser")
+  notes         Note[]         @relation("createdByUser")
+}
+
+model Task {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  taskTitle    String
+  taskDesc     String
+  startsAt     DateTime
+  reminderAt   DateTime
+  date         String
+  tags         String[]
+  status       String
+  link         String?
+  sendReminder Boolean
+  createdBy    User      @relation("createdByUser", fields: [createdById], references: [id])
+  createdById  String    @db.ObjectId
+  createdAt    DateTime? @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Code {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  code      String
+  user      User      @relation("createdByUser", fields: [userId], references: [id])
+  userId    String    @unique @db.ObjectId
+  userEmail String
+  createdAt DateTime? @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model WatchLater {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  url         String
+  title       String
+  image       String
+  note        String
+  createdBy   User      @relation("createdByUser", fields: [createdById], references: [id])
+  createdById String    @db.ObjectId
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Note {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  content     String
+  createdBy   User      @relation("createdByUser", fields: [createdById], references: [id])
+  createdById String    @db.ObjectId
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime  @updatedAt
+}
